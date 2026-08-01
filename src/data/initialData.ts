@@ -98,7 +98,7 @@ export const UPCOMING_GATHERING: EventInfo = {
   title: "The Great Rift Valley Convergence",
   subtitle: "Awakening the Ancestral Fire of Ubuntu",
   dates: "September 26, 2026",
-  location: "Sacred Baobab Sanctuary, Lake Nakuru Foothills, Kenya (Hybrid Physical & Global Virtual Access)",
+  location: "Sacred Baobab Sanctuary, Nakuru Foothills, Kenya (Hybrid Physical & Global Virtual Access)",
   theme: "Healing the Land, Uniting the Tribes, Empowering the Youth",
   description: "On this sacred day, elders, healers, conservationists, and youth from over 40 African nations and the diaspora will gather beneath the ancient acacias and baobabs of the Great Rift Valley. Here, where humanity first walked upright, we join our voices in sunrise libations, oral storytelling, drum healing, and practical workshops on Indigenous ecology.",
   heroImage: "https://images.unsplash.com/photo-1516026974298-531bf4251037?auto=format&fit=crop&w=1600&q=80",

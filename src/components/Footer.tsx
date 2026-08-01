@@ -40,7 +40,7 @@ export const Footer: React.FC<FooterProps> = ({ setActiveTab, onOpenSponsorModal
               <span className="font-serif text-2xl font-bold text-white tracking-tight">SUT Africa</span>
             </div>
             <p className="text-sm text-[#FAF6F0]/85 leading-relaxed font-light">
-              Spiritual Unity of the Tribes, Africa is a movement fostering cross-cultural harmony, ecological stewardship of the Mother Continent, and ancestral wisdom preservation.
+              Spiritual Unity of the Tribes, Africa is a movement fostering cross-cultural harmony, ecological stewardship of the Mother Earth, and ancestral wisdom preservation.
             </p>
             <div className="p-3.5 rounded-xl bg-[#2C1D11]/80 border border-[#D4A373]/40 text-xs text-[#FFD8B5] italic font-serif">
               "Umuntu ngumuntu ngabantu" — I am because we are, and since we are, therefore I am.
@@ -107,44 +107,23 @@ export const Footer: React.FC<FooterProps> = ({ setActiveTab, onOpenSponsorModal
                   onClick={() => { setActiveTab("portal"); window.scrollTo({top:0, behavior:"smooth"}); }}
                   className="text-[#FFB74D] font-bold hover:text-white transition-colors flex items-center gap-1.5"
                 >
-                  <span>✦ My Passes & Secretariat Portal</span>
+                  <span>✦ My Passes & Secretary Portal</span>
                 </button>
               </li>
             </ul>
           </div>
 
-          {/* Col 3: Contact & Regional Hubs */}
+          {/* Col 3: Contact & Hubs */}
           <div>
             <h3 className="font-serif text-lg font-bold text-white mb-4 flex items-center gap-2">
               <span className="text-[#FFB74D]">✦</span>
-              <span>Secretariats</span>
+              <span>Contact Secretary</span>
             </h3>
             <div className="space-y-3.5 text-sm text-[#FAF6F0]/80">
-              <div className="flex items-start gap-2.5">
-                <MapPin className="w-4 h-4 text-[#E65100] shrink-0 mt-0.5" />
-                <div>
-                  <p className="font-bold text-white">East Africa Hub</p>
-                  <p className="text-xs text-[#D4A373]">Nairobi & Lake Nakuru Sanctuary, Kenya</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-2.5">
-                <MapPin className="w-4 h-4 text-[#E65100] shrink-0 mt-0.5" />
-                <div>
-                  <p className="font-bold text-white">West Africa Hub</p>
-                  <p className="text-xs text-[#D4A373]">Dakar, Senegal & Accra, Ghana</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-2.5">
-                <MapPin className="w-4 h-4 text-[#E65100] shrink-0 mt-0.5" />
-                <div>
-                  <p className="font-bold text-white">Southern Africa Hub</p>
-                  <p className="text-xs text-[#D4A373]">Johannesburg, RSA & Gaborone, Botswana</p>
-                </div>
-              </div>
               <div className="flex items-center gap-2.5 pt-1">
                 <Mail className="w-4 h-4 text-[#E65100] shrink-0" />
-                <a href="mailto:secretariat@sutafrica.org" className="hover:text-[#FFB74D] transition-colors text-xs font-semibold">
-                  secretariat@sutafrica.org
+                <a href="mailto:secretary@sutafrica.org" className="hover:text-[#FFB74D] transition-colors text-xs font-semibold">
+                  secretary@sutafrica.org
                 </a>
               </div>
             </div>

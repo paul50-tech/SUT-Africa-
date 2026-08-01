@@ -67,7 +67,7 @@ export const DonationsTab: React.FC<DonationsTabProps> = ({
       currency,
       method,
       designatedElderId: designatedElderId === "general" ? undefined : designatedElderId,
-      message: message || "May this gift nourish our elders and safeguard the Mother Continent.",
+      message: message || "May this gift nourish our elders and safeguard the Mother Earth.",
       date: new Date().toISOString().split("T")[0]
     };
 
@@ -190,7 +190,7 @@ export const DonationsTab: React.FC<DonationsTabProps> = ({
                 Make an Immediate Contribution
               </h2>
               <p className="text-xs sm:text-sm text-[#5C4033] font-medium">
-                Select your currency and gateway. All transactions are protected by 256-bit encryption and go directly to our secretariats.
+                Select your currency and gateway. All transactions are protected by 256-bit encryption and go directly to our secretary.
               </p>
             </div>
 
@@ -375,7 +375,7 @@ export const DonationsTab: React.FC<DonationsTabProps> = ({
               <div className="p-4 rounded-2xl bg-[#FFF8E7] border border-[#D4A373]/60 text-xs text-[#5C4033] flex items-center gap-3 font-medium shadow-sm">
                 <ShieldCheck className="w-6 h-6 text-[#2E7D32] shrink-0" />
                 <span>
-                  SUT Africa operates with transparency. Our secretariats in Nairobi, Dakar, and Johannesburg publish annual audited financial charters.
+                  SUT Africa operates with transparency. Our secretary in Nairobi, Dakar, and Johannesburg publish annual audited financial charters.
                 </span>
               </div>
 

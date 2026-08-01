@@ -157,7 +157,7 @@ export const PortalTab: React.FC<PortalTabProps> = ({
           </div>
 
           <h1 className="font-serif text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
-            My Sacred Bundle & Assembly Secretariat Portal
+            My Sacred Bundle & Assembly Secretary Portal
           </h1>
 
           <p className="text-sm sm:text-base text-[#FAF6F0]/90 leading-relaxed font-light max-w-3xl">
@@ -187,7 +187,7 @@ export const PortalTab: React.FC<PortalTabProps> = ({
               }`}
             >
               {isAdminUnlocked ? <Unlock className="w-4 h-4 text-[#FFB74D]" /> : <Lock className="w-4 h-4 text-[#FFB74D]" />}
-              <span>Secretariat Admin & Export Suite</span>
+              <span>Secretary Admin & Export Suite</span>
             </button>
           </div>
         </div>
@@ -466,13 +466,13 @@ export const PortalTab: React.FC<PortalTabProps> = ({
 
               <div className="space-y-2">
                 <span className="text-xs font-extrabold uppercase tracking-widest text-[#8C5319] block">
-                  Sanctuary Secretariat Access
+                  Sanctuary Secretary Access
                 </span>
                 <h3 className="font-serif text-2xl font-bold text-[#1A120B]">
                   Enter Coordinator Security Passcode
                 </h3>
                 <p className="text-xs sm:text-sm text-[#5C4033] font-light">
-                  To protect attendee privacy and Indigenous data sovereignty, please enter your secretariat PIN.
+                  To protect attendee privacy and Indigenous data sovereignty, please enter your secretary PIN.
                 </p>
               </div>
 
@@ -499,7 +499,7 @@ export const PortalTab: React.FC<PortalTabProps> = ({
                   className="w-full py-3.5 rounded-xl bg-gradient-to-r from-[#E65100] via-[#D84315] to-[#BF360C] hover:from-[#FF6D00] hover:to-[#D84315] text-white font-extrabold text-sm uppercase tracking-wider shadow-lg transition-all flex items-center justify-center gap-2"
                 >
                   <Unlock className="w-4 h-4 text-[#FFB74D]" />
-                  <span>Unlock Secretariat Suite</span>
+                  <span>Unlock Secretary Suite</span>
                 </button>
               </form>
 

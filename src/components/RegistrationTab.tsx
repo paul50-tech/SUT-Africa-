@@ -159,7 +159,7 @@ export const RegistrationTab: React.FC<RegistrationTabProps> = ({ event, onRegis
               Karibu! (Welcome to the Circle!)
             </h2>
             <p className="text-sm sm:text-base text-[#FFB74D] font-medium max-w-lg mx-auto">
-              Your registration is confirmed. Please present this digital ticket code or QR upon arrival at the Lake Nakuru Baobab Sanctuary.
+              Your registration is confirmed. Please present this digital ticket code or QR upon arrival at the Nakuru Baobab Sanctuary.
             </p>
           </div>
 
@@ -226,7 +226,7 @@ export const RegistrationTab: React.FC<RegistrationTabProps> = ({ event, onRegis
             </div>
 
             <div className="bg-[#18120D] px-8 py-5 border-t-2 border-[#5C3A21] flex flex-col sm:flex-row items-center justify-between text-xs font-semibold text-[#D4A373] gap-4">
-              <span>{event.dates} • Lake Nakuru Foothills, Kenya</span>
+              <span>{event.dates} • Nakuru Foothills, Kenya</span>
               <button
                 onClick={() => window.print()}
                 className="px-5 py-2.5 rounded-xl bg-[#2C1D11] hover:bg-[#3E2315] text-[#FFB74D] font-extrabold flex items-center gap-2 transition-all border border-[#D4A373]/40 shadow-sm hover:scale-105"
@@ -249,7 +249,7 @@ export const RegistrationTab: React.FC<RegistrationTabProps> = ({ event, onRegis
             </button>
             <span className="text-[#D4A373] hidden sm:inline">•</span>
             <span className="text-xs text-[#FAF6F0] font-medium">
-              Your pass is now securely saved in <strong className="text-[#FFB74D]">My Passes & Secretariat Portal</strong> (Header Navigation)
+              Your pass is now securely saved in <strong className="text-[#FFB74D]">My Passes & Secretary Portal</strong> (Header Navigation)
             </span>
           </div>
         </div>

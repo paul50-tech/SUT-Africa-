@@ -36,17 +36,17 @@ const HERO_SLIDES: HeroSlide[] = [
   {
     id: 1,
     title: "The Great Rift Valley Sanctuary",
-    location: "Lake Nakuru & Mount Kenya Foothills, East Africa",
+    location: "Nakuru Lake Nakuru & Mount Kenya Mount Kenya Foothills, East Africa",
     tagline: "Where Humanity First Walked Upright",
     image: "https://images.unsplash.com/photo-1516026974298-531bf4251037?auto=format&fit=crop&w=1600&q=80",
-    description: "Beneath ancient baobabs and acacias, diverse tribes gather to renew sacred vows with the Mother Continent."
+    description: "Beneath ancient baobabs and acacias, diverse tribes gather to renew sacred vows with the Mother Earth."
   },
   {
     id: 2,
     title: "Sacred Drum Circles & Griot Storytelling",
     location: "Dakar, Senegal & West African Coast",
-    tagline: "The Heartbeat of the Mother Continent",
-    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=1600&q=80",
+    tagline: "The Heartbeat of the Mother Earth",
+    image: "https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?auto=format&fit=crop&w=1600&q=80",
     description: "Polyrhythmic drumming and oral history sessions bridge generations, passing down the memory of African peace."
   },
   {
@@ -54,7 +54,7 @@ const HERO_SLIDES: HeroSlide[] = [
     title: "San Trance Dancers & Desert Wisdom",
     location: "The Kalahari Sands, Southern Africa",
     tagline: "Conversing with the Cosmos",
-    image: "https://images.unsplash.com/photo-1589156280159-27698a70f29e?auto=format&fit=crop&w=1600&q=80",
+    image: "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=1600&q=80",
     description: "Honoring one of Earth's oldest surviving continuous cultures as they guide us in living harmoniously with scarce waters."
   },
   {
@@ -103,7 +103,7 @@ export const HomeTab: React.FC<HomeTabProps> = ({ setActiveTab, onOpenSponsorMod
     },
     {
       title: "Cross-Cultural Harmony",
-      subtitle: "One Mother Continent",
+      subtitle: "One Mother Earth",
       icon: <Globe2 className="w-6 h-6 text-[#FFD54F]" />,
       content: "Long before colonial borders partitioned Africa into 54 nations, our kingdoms traded, intermarried, and forged treaties of brotherhood. We gather to heal ethnic divides and celebrate our shared spiritual origins."
     }
@@ -143,7 +143,7 @@ export const HomeTab: React.FC<HomeTabProps> = ({ setActiveTab, onOpenSponsorMod
           <h1 className="font-serif text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight text-white mb-8 leading-tight sm:leading-none drop-shadow-2xl">
             Walking in Oneness to <br className="hidden sm:inline" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFD8B5] via-[#FFB74D] via-[#E65100] to-[#FF6D00]">
-              Steward the Mother Continent
+              Steward the Mother Earth
             </span>
           </h1>
 
@@ -151,10 +151,10 @@ export const HomeTab: React.FC<HomeTabProps> = ({ setActiveTab, onOpenSponsorMod
           <div className="max-w-4xl mx-auto mb-12 p-8 sm:p-10 rounded-3xl bg-[#1A120B]/85 backdrop-blur-lg border border-[#D4A373]/40 shadow-2xl relative overflow-hidden group">
             <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#D4A373] via-[#E65100] to-[#D4A373]" />
             <p className="font-serif text-lg sm:text-2xl text-[#FAF6F0] italic leading-relaxed font-normal">
-              "We are all spiritual beings who humbly walk alongside each other, in oneness, to steward the Mother Continent and the life upon it. Rooted in the spirit of <span className="text-[#FFB74D] font-bold not-italic">Ubuntu</span> — <span className="underline decoration-[#E65100] underline-offset-8">I am because we are</span> — we gather across tribes for future generations."
+              "We are all spiritual beings who humbly walk alongside each other, in oneness, to steward the Mother Earth and the life upon it. Rooted in the spirit of <span className="text-[#FFB74D] font-bold not-italic">Ubuntu</span> — <span className="underline decoration-[#E65100] underline-offset-8">I am because we are</span> — we gather across tribes for future generations."
             </p>
             <p className="mt-6 text-xs sm:text-sm text-[#D4A373] uppercase tracking-widest font-bold">
-              — SUT Africa Ancestral Council Declaration
+              — SUT Africa Declaration
             </p>
           </div>
 
@@ -298,7 +298,7 @@ export const HomeTab: React.FC<HomeTabProps> = ({ setActiveTab, onOpenSponsorMod
           <div className="relative z-10 max-w-3xl space-y-7">
             <div className="inline-flex items-center gap-2.5 bg-white/10 backdrop-blur-md px-4 py-1.5 rounded-full text-xs font-extrabold uppercase tracking-widest text-[#FFD8B5] border border-white/20">
               <Calendar className="w-4 h-4 text-[#FFB74D]" />
-              <span>September 26, 2026 • Lake Nakuru, Kenya</span>
+              <span>September 26, 2026 • Nakuru, Kenya</span>
             </div>
 
             <h2 className="font-serif text-3xl sm:text-5xl font-extrabold tracking-tight text-white leading-tight">
@@ -307,7 +307,7 @@ export const HomeTab: React.FC<HomeTabProps> = ({ setActiveTab, onOpenSponsorMod
             </h2>
 
             <p className="text-base sm:text-lg text-[#FAF6F0]/90 leading-relaxed font-light">
-              Join elders, healers, storytellers, and youth from across Africa and the diaspora. Experience sunrise blessings, oral history under the Baobab tree, traditional drumming for spiritual healing, and youth rites of passage.
+              Join elders, healers, storytellers, and youth from across Africa and the world. Experience sunrise blessings, oral history under a tree, traditional drumming for spiritual healing, and youth rites of passage.
             </p>
 
             <div className="flex flex-wrap gap-4 pt-4">

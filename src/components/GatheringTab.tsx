@@ -218,7 +218,7 @@ export const GatheringTab: React.FC<GatheringTabProps> = ({
             The Eternal Council Fire & Sacred Prayer Ribbon Wall
           </h2>
           <p className="text-sm sm:text-base text-[#5C4033] leading-relaxed font-light">
-            In the Gathering of Eagles tradition, the sacred fire is lit at dawn on Day 1 by traditional fire keepers and burns continuously until the closing circle. Around the fire, attendees tie colored prayer ribbons to the ceremonial Baobab tree, offering blessings for the Mother Continent.
+            In the Gathering of Eagles tradition, the sacred fire is lit at dawn on Day 1 by traditional fire keepers and burns continuously until the closing circle. Around the fire, attendees tie colored prayer ribbons to the ceremonial Baobab tree, offering blessings for the Mother Earth.
           </p>
         </div>
 

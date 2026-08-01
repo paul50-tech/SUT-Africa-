@@ -65,7 +65,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab, onOpenS
                   SUT Africa
                 </span>
                 <span className="hidden sm:inline-block text-[10px] uppercase tracking-widest bg-[#5C2C16] text-[#FFD8B5] px-2 py-0.5 rounded-full font-bold border border-[#D4A373]/40 shadow-sm shrink-0">
-                  Mother Continent
+                  Mother Earth
                 </span>
               </div>
               <p className="text-xs text-[#D4A373] hidden md:block font-medium tracking-wide truncate">
