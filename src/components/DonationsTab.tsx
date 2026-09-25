@@ -15,6 +15,7 @@ import {
   HeartHandshake
 } from "lucide-react";
 import confetti from "canvas-confetti";
+import { ElderSponsorshipDetails } from "./ElderSponsorshipDetails";
 
 interface DonationsTabProps {
   partners: PartnerOrg[];
@@ -97,7 +98,7 @@ export const DonationsTab: React.FC<DonationsTabProps> = ({
         
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#5C2C16] border border-[#D4A373]/50 text-[#FFB74D] text-xs font-extrabold uppercase tracking-widest shadow-md">
           <HandHeart className="w-4 h-4" />
-          <span>Localized Financial Infrastructure</span>
+          <span>Elder Travel & Sanctuary Fund</span>
         </div>
 
         <h1 className="font-serif text-3xl sm:text-5xl font-extrabold tracking-tight text-white leading-tight">
@@ -108,11 +109,25 @@ export const DonationsTab: React.FC<DonationsTabProps> = ({
         </h1>
 
         <p className="text-sm sm:text-lg text-[#FAF6F0]/90 max-w-3xl mx-auto font-light leading-relaxed">
-          To build an authentic African movement, our financial engine must be accessible to both the rural farmer and the global philanthropist. We integrate local African mobile money (M-Pesa, MTN MoMo, Flutterwave) alongside global platforms (PayPal, Stripe).
+          To build an authentic African movement, our financial engine must be transparent and direct. All gathering passes are 100% Free RSVP. To support village elder travel, contributions can be made directly via verified Safaricom M-Pesa Paybill, KCB Bank wire, MTN MoMo, or verified online gateways.
         </p>
       </section>
 
-      {/* 2. INTERACTIVE DONATION PORTAL */}
+      {/* 2. EXPLICIT CONTRIBUTION CHANNELS & SPONSORSHIP */}
+      <section className="bg-[#FAF6F0] rounded-3xl p-6 sm:p-12 border-2 border-[#D4A373] shadow-2xl max-w-4xl mx-auto space-y-6">
+        <div className="text-center space-y-2">
+          <h2 className="font-serif text-2xl sm:text-3xl font-extrabold text-[#1A120B]">
+            Direct SUT Africa Contribution Channels
+          </h2>
+          <p className="text-xs sm:text-sm text-[#5C4033]">
+            Verified account details for Safaricom M-Pesa, KCB Bank Wire, MTN MoMo, and direct external platforms.
+          </p>
+        </div>
+
+        <ElderSponsorshipDetails onAddDonation={onAddDonation} />
+      </section>
+
+      {/* 3. SIMULATED DONATION RECEIPT & CUSTOM PLEDGES */}
       <section className="bg-[#FAF6F0] rounded-3xl p-6 sm:p-12 border-2 border-[#D4A373] shadow-2xl max-w-4xl mx-auto space-y-10">
         
         {certificate ? (

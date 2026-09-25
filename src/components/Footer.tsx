@@ -51,7 +51,7 @@ export const Footer: React.FC<FooterProps> = ({ setActiveTab, onOpenSponsorModal
           <div>
             <h3 className="font-serif text-lg font-bold text-white mb-4 flex items-center gap-2">
               <span className="text-[#FFB74D]">✦</span>
-              <span>Sacred Pathways</span>
+              <span>Quick Navigation</span>
             </h3>
             <ul className="space-y-2.5 text-sm font-medium">
               <li>
@@ -59,7 +59,7 @@ export const Footer: React.FC<FooterProps> = ({ setActiveTab, onOpenSponsorModal
                   onClick={() => { setActiveTab("home"); window.scrollTo({top:0, behavior:"smooth"}); }}
                   className="text-[#D4A373] hover:text-[#FFB74D] transition-colors flex items-center gap-1.5"
                 >
-                  <span>Core Philosophy & 4 Directions</span>
+                  <span>Home & Philosophy</span>
                 </button>
               </li>
               <li>
@@ -67,15 +67,7 @@ export const Footer: React.FC<FooterProps> = ({ setActiveTab, onOpenSponsorModal
                   onClick={() => { setActiveTab("gathering"); window.scrollTo({top:0, behavior:"smooth"}); }}
                   className="text-[#D4A373] hover:text-[#FFB74D] transition-colors flex items-center gap-1.5"
                 >
-                  <span>The Gathering & Council Fire</span>
-                </button>
-              </li>
-              <li>
-                <button 
-                  onClick={() => { setActiveTab("elders"); window.scrollTo({top:0, behavior:"smooth"}); }}
-                  className="text-[#D4A373] hover:text-[#FFB74D] transition-colors flex items-center gap-1.5"
-                >
-                  <span>Sponsor an Elder's Journey</span>
+                  <span>The Gathering & Schedule</span>
                 </button>
               </li>
               <li>
@@ -83,7 +75,7 @@ export const Footer: React.FC<FooterProps> = ({ setActiveTab, onOpenSponsorModal
                   onClick={() => { setActiveTab("lore"); window.scrollTo({top:0, behavior:"smooth"}); }}
                   className="text-[#D4A373] hover:text-[#FFB74D] transition-colors flex items-center gap-1.5"
                 >
-                  <span>Wisdom Offerings & Lore</span>
+                  <span>Wisdom & Lore</span>
                 </button>
               </li>
               <li>
@@ -91,23 +83,15 @@ export const Footer: React.FC<FooterProps> = ({ setActiveTab, onOpenSponsorModal
                   onClick={() => { setActiveTab("register"); window.scrollTo({top:0, behavior:"smooth"}); }}
                   className="text-[#D4A373] hover:text-[#FFB74D] transition-colors flex items-center gap-1.5"
                 >
-                  <span>RSVP & Ticket Registration</span>
+                  <span>Register for Gathering</span>
                 </button>
               </li>
               <li>
                 <button 
-                  onClick={() => { setActiveTab("volunteer"); window.scrollTo({top:0, behavior:"smooth"}); }}
-                  className="text-[#D4A373] hover:text-[#FFB74D] transition-colors flex items-center gap-1.5"
+                  onClick={onOpenSponsorModal}
+                  className="text-[#FFB74D] hover:text-white font-bold transition-colors flex items-center gap-1.5"
                 >
-                  <span>Volunteer Portal</span>
-                </button>
-              </li>
-              <li>
-                <button 
-                  onClick={() => { setActiveTab("portal"); window.scrollTo({top:0, behavior:"smooth"}); }}
-                  className="text-[#FFB74D] font-bold hover:text-white transition-colors flex items-center gap-1.5"
-                >
-                  <span>✦ My Passes & Secretary Portal</span>
+                  <span>✦ Sponsor an Elder</span>
                 </button>
               </li>
             </ul>
@@ -122,8 +106,8 @@ export const Footer: React.FC<FooterProps> = ({ setActiveTab, onOpenSponsorModal
             <div className="space-y-3.5 text-sm text-[#FAF6F0]/80">
               <div className="flex items-center gap-2.5 pt-1">
                 <Mail className="w-4 h-4 text-[#E65100] shrink-0" />
-                <a href="mailto:secretary@sutafrica.org" className="hover:text-[#FFB74D] transition-colors text-xs font-semibold">
-                  secretary@sutafrica.org
+                <a href="mailto:sut.afric@gmail.com" className="hover:text-[#FFB74D] transition-colors text-xs font-semibold">
+                  sut.afric@gmail.com
                 </a>
               </div>
             </div>

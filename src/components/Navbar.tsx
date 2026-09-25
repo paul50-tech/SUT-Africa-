@@ -25,19 +25,41 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab, onOpenS
 
   const navItems: { id: TabType; label: string; icon: React.ReactNode }[] = [
     { id: "home", label: "Philosophy", icon: <Globe2 className="w-4 h-4" /> },
-    { id: "gathering", label: "Gathering", icon: <Calendar className="w-4 h-4" /> },
-    { id: "elders", label: "Sponsor", icon: <HeartHandshake className="w-4 h-4" /> },
-    { id: "lore", label: "Lore", icon: <BookOpen className="w-4 h-4" /> },
-    { id: "register", label: "Tickets", icon: <Ticket className="w-4 h-4" /> },
-    { id: "volunteer", label: "Volunteer", icon: <Users className="w-4 h-4" /> },
-    { id: "donations", label: "Partners", icon: <HandHeart className="w-4 h-4" /> },
-    { id: "portal", label: "My Portal", icon: <QrCode className="w-4 h-4 text-[#FFB74D]" /> },
+    { id: "gathering", label: "The Gathering", icon: <Calendar className="w-4 h-4" /> },
+    { id: "elders", label: "Elders & Support", icon: <HeartHandshake className="w-4 h-4" /> },
+    { id: "lore", label: "Wisdom & Lore", icon: <BookOpen className="w-4 h-4" /> },
   ];
 
   const handleTabClick = (tab: TabType) => {
     setActiveTab(tab);
     setMobileMenuOpen(false);
     window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const handlePrefetch = (tab: TabType) => {
+    switch (tab) {
+      case "gathering":
+        import("./GatheringTab");
+        break;
+      case "elders":
+        import("./EldersTab");
+        break;
+      case "lore":
+        import("./LoreTab");
+        break;
+      case "register":
+        import("./RegistrationTab");
+        break;
+      case "volunteer":
+        import("./VolunteerTab");
+        break;
+      case "donations":
+        import("./DonationsTab");
+        break;
+      case "portal":
+        import("./PortalTab");
+        break;
+    }
   };
 
   return (
@@ -75,16 +97,18 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab, onOpenS
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden xl:flex items-center gap-1 2xl:gap-1.5">
+          <nav className="hidden lg:flex items-center gap-2">
             {navItems.map((item) => {
               const isActive = activeTab === item.id;
               return (
                 <button
                   key={item.id}
                   onClick={() => handleTabClick(item.id)}
-                  className={`flex items-center gap-2 px-3 py-2 rounded-xl text-sm font-medium transition-all whitespace-nowrap ${
+                  onMouseEnter={() => handlePrefetch(item.id)}
+                  onFocus={() => handlePrefetch(item.id)}
+                  className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-sm font-medium transition-all whitespace-nowrap ${
                     isActive
-                      ? "bg-gradient-to-r from-[#E65100] to-[#BF360C] text-white shadow-lg shadow-[#E65100]/30 font-bold border border-[#FFB74D]/30 scale-[1.02]"
+                      ? "bg-gradient-to-r from-[#E65100] to-[#BF360C] text-white shadow-lg shadow-[#E65100]/30 font-bold border border-[#FFB74D]/30"
                       : "text-[#D4A373] hover:bg-[#3E2315]/80 hover:text-white"
                   }`}
                 >
@@ -109,7 +133,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab, onOpenS
           </div>
 
           {/* Mobile/Tablet Menu Button */}
-          <div className="flex xl:hidden items-center gap-2 sm:gap-2.5 shrink-0">
+          <div className="flex lg:hidden items-center gap-2 sm:gap-2.5 shrink-0">
             <button
               onClick={onOpenSponsorModal}
               className="hidden sm:flex md:hidden items-center gap-1.5 bg-gradient-to-r from-[#E65100] to-[#BF360C] text-white px-3 py-1.5 rounded-lg text-xs font-bold shadow-md border border-[#FFB74D]/20 shrink-0"
@@ -131,7 +155,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab, onOpenS
 
       {/* Mobile Menu Drawer */}
       {mobileMenuOpen && (
-        <div className="xl:hidden bg-[#1A120B] border-b border-[#5C3A21] px-4 pt-3 pb-6 space-y-2 animate-fadeIn shadow-2xl">
+        <div className="lg:hidden bg-[#1A120B] border-b border-[#5C3A21] px-4 pt-3 pb-6 space-y-2 animate-fadeIn shadow-2xl">
           <p className="text-xs font-bold text-[#FFB74D]/80 uppercase tracking-widest px-2 mb-2 font-serif">
             Navigation Menu
           </p>

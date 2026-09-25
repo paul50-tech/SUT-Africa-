@@ -36,9 +36,9 @@ const HERO_SLIDES: HeroSlide[] = [
   {
     id: 1,
     title: "The Great Rift Valley Sanctuary",
-    location: "Nakuru Lake Nakuru & Mount Kenya Mount Kenya Foothills, East Africa",
+    location: "Bahai Faith Centre, Nakuru",
     tagline: "Where Humanity First Walked Upright",
-    image: "https://images.unsplash.com/photo-1516026974298-531bf4251037?auto=format&fit=crop&w=1600&q=80",
+    image: "https://images.unsplash.com/photo-1516026974298-531bf4251037?auto=format&fit=crop&w=1200&q=75",
     description: "Beneath ancient baobabs and acacias, diverse tribes gather to renew sacred vows with the Mother Earth."
   },
   {
@@ -46,7 +46,7 @@ const HERO_SLIDES: HeroSlide[] = [
     title: "Sacred Drum Circles & Griot Storytelling",
     location: "Dakar, Senegal & West African Coast",
     tagline: "The Heartbeat of the Mother Earth",
-    image: "https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?auto=format&fit=crop&w=1600&q=80",
+    image: "https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?auto=format&fit=crop&w=1200&q=75",
     description: "Polyrhythmic drumming and oral history sessions bridge generations, passing down the memory of African peace."
   },
   {
@@ -54,7 +54,7 @@ const HERO_SLIDES: HeroSlide[] = [
     title: "San Trance Dancers & Desert Wisdom",
     location: "The Kalahari Sands, Southern Africa",
     tagline: "Conversing with the Cosmos",
-    image: "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=1600&q=80",
+    image: "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=1200&q=75",
     description: "Honoring one of Earth's oldest surviving continuous cultures as they guide us in living harmoniously with scarce waters."
   },
   {
@@ -62,7 +62,7 @@ const HERO_SLIDES: HeroSlide[] = [
     title: "Dense Rainforests & Sacred Rivers",
     location: "The Congo & Nile Basins",
     tagline: "Arteries of Civilization and Unity",
-    image: "https://images.unsplash.com/photo-1503177119275-0aa32b3a9368?auto=format&fit=crop&w=1600&q=80",
+    image: "https://images.unsplash.com/photo-1503177119275-0aa32b3a9368?auto=format&fit=crop&w=1200&q=75",
     description: "Protecting Africa's immense biodiversity as living spiritual entities that sustain all future generations."
   }
 ];
@@ -126,6 +126,10 @@ export const HomeTab: React.FC<HomeTabProps> = ({ setActiveTab, onOpenSponsorMod
             <img
               src={slide.image}
               alt={slide.title}
+              loading={idx === 0 ? "eager" : "lazy"}
+              decoding={idx === 0 ? "sync" : "async"}
+              // @ts-ignore
+              fetchPriority={idx === 0 ? "high" : "low"}
               className="w-full h-full object-cover object-center"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#1A120B] via-[#1A120B]/60 to-black/60" />
@@ -168,7 +172,7 @@ export const HomeTab: React.FC<HomeTabProps> = ({ setActiveTab, onOpenSponsorMod
               className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-gradient-to-r from-[#E65100] via-[#D84315] to-[#BF360C] hover:from-[#FF6D00] hover:to-[#D84315] text-white font-extrabold text-base sm:text-lg shadow-2xl shadow-[#E65100]/40 hover:scale-105 transition-all transform flex items-center justify-center gap-3 border border-[#FFB74D]/30"
             >
               <Calendar className="w-5 h-5 text-[#FFB74D]" />
-              <span>Register for the Gathering</span>
+              <span>100% Free RSVP Registration</span>
               <ArrowRight className="w-5 h-5" />
             </button>
 
@@ -298,7 +302,7 @@ export const HomeTab: React.FC<HomeTabProps> = ({ setActiveTab, onOpenSponsorMod
           <div className="relative z-10 max-w-3xl space-y-7">
             <div className="inline-flex items-center gap-2.5 bg-white/10 backdrop-blur-md px-4 py-1.5 rounded-full text-xs font-extrabold uppercase tracking-widest text-[#FFD8B5] border border-white/20">
               <Calendar className="w-4 h-4 text-[#FFB74D]" />
-              <span>September 26, 2026 • Nakuru, Kenya</span>
+              <span>September 26, 2026 • Bahai Faith Centre, Nakuru</span>
             </div>
 
             <h2 className="font-serif text-3xl sm:text-5xl font-extrabold tracking-tight text-white leading-tight">

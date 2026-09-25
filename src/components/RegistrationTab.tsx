@@ -14,9 +14,12 @@ import {
   Award, 
   QrCode, 
   Printer,
-  Sparkles
+  Sparkles,
+  ChevronDown,
+  ChevronUp
 } from "lucide-react";
 import confetti from "canvas-confetti";
+import { ElderSponsorshipDetails } from "./ElderSponsorshipDetails";
 
 interface RegistrationTabProps {
   event: EventInfo;
@@ -26,6 +29,7 @@ interface RegistrationTabProps {
 export const RegistrationTab: React.FC<RegistrationTabProps> = ({ event, onRegister }) => {
   const [step, setStep] = useState<number>(1);
   const [completedTicket, setCompletedTicket] = useState<TicketRegistration | null>(null);
+  const [showElderDonationDetails, setShowElderDonationDetails] = useState(false);
 
   const [formData, setFormData] = useState({
     fullName: "",
@@ -33,7 +37,7 @@ export const RegistrationTab: React.FC<RegistrationTabProps> = ({ event, onRegis
     phone: "",
     country: "",
     tribalAffiliation: "",
-    passType: "General Gathering (Free)" as TicketRegistration["passType"],
+    passType: "General Gathering (100% Free RSVP)" as TicketRegistration["passType"],
     workshopInterests: [] as string[],
     dialectNeeds: "Swahili / English",
     emergencyContact: "",
@@ -42,29 +46,29 @@ export const RegistrationTab: React.FC<RegistrationTabProps> = ({ event, onRegis
 
   const passOptions: { id: TicketRegistration["passType"]; title: string; price: string; description: string; popular?: boolean }[] = [
     {
-      id: "General Gathering (Free)",
+      id: "General Gathering (100% Free RSVP)",
       title: "General Gathering Pass",
-      price: "FREE",
-      description: "Full access to all sunrise libations, storytelling circles, drumming ceremonies, and youth dialogues under the baobab tree."
+      price: "100% FREE RSVP ($0)",
+      description: "Full open access to all sunrise libations, storytelling circles, drumming ceremonies, and youth dialogues under the baobab tree."
     },
     {
-      id: "Camping Pass ($35 / Equiv)",
+      id: "Sanctuary Camping Pass (100% Free RSVP)",
       title: "Sanctuary Camping Pass",
-      price: "$35 / KES 4,500",
-      description: "Includes General Admission + safe tent pitch space in our guarded baobab grove, spring water access, and solar charging stations.",
+      price: "100% FREE RSVP ($0)",
+      description: "Includes General Admission + safe tent pitch space in our guarded baobab grove, spring water access, and solar charging stations at no cost.",
       popular: true
     },
     {
-      id: "Meal Ticket Bundle ($50 / Equiv)",
-      title: "Communal Meal Bundle",
-      price: "$50 / KES 6,500",
-      description: "Includes General Admission + 3 daily organic communal meals featuring traditional African grains (millet, sorghum, teff), stews, and herbal teas."
+      id: "Communal Meals Pass (100% Free RSVP)",
+      title: "Communal Meal Sharing Pass",
+      price: "100% FREE RSVP ($0)",
+      description: "Includes General Admission + 3 daily shared organic communal meals featuring traditional African grains (millet, sorghum, teff), stews, and herbal teas."
     },
     {
-      id: "VIP Elder Supporter ($150 / Equiv)",
-      title: "VIP Elder Supporter Pass",
-      price: "$150 / KES 19,500",
-      description: "Includes Camping + Meals + a direct $75 contribution toward chartering transport for rural elders from West and Southern Africa!"
+      id: "Youth & Family Circle Pass (100% Free RSVP)",
+      title: "Youth & Family Circle Pass",
+      price: "100% FREE RSVP ($0)",
+      description: "Open access for families and young seekers to participate in children's oral lore, elder rites of passage, and creative craft circles."
     }
   ];
 
@@ -132,11 +136,11 @@ export const RegistrationTab: React.FC<RegistrationTabProps> = ({ event, onRegis
         
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#5C2C16] border border-[#D4A373]/50 text-[#FFB74D] text-xs font-extrabold uppercase tracking-widest shadow-md">
           <Ticket className="w-4 h-4" />
-          <span>The Functional Engine</span>
+          <span>Sacred Gathering RSVP</span>
         </div>
 
         <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
-          RSVP & Ticket Registration: <br />
+          RSVP & Free Registration: <br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFB74D] via-[#FF8A00] to-[#E65100]">
             {event.title}
           </span>
@@ -144,7 +148,7 @@ export const RegistrationTab: React.FC<RegistrationTabProps> = ({ event, onRegis
 
         <p className="text-sm sm:text-base text-[#FAF6F0]/90 max-w-2xl mx-auto font-light leading-relaxed">
           {event.dates} • {event.location}. <br />
-          SUT gatherings are open to all who come in reverence. Register below to secure your entry, camping pass, communal meal tickets, or dialect translation preferences.
+          In the spirit of Ubuntu, all gathering passes, camping reservations, and communal meal shares are <strong className="text-[#FFB74D] font-bold">100% Free RSVP</strong>. Register below to secure your entry pass.
         </p>
       </section>
 
@@ -158,8 +162,11 @@ export const RegistrationTab: React.FC<RegistrationTabProps> = ({ event, onRegis
             <h2 className="font-serif text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
               Karibu! (Welcome to the Circle!)
             </h2>
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#2E7D32]/30 border border-[#4CAF50] text-[#A5D6A7] text-xs font-bold uppercase tracking-wider">
+              ✓ 100% Free RSVP Pass Confirmed • Zero Balance Due
+            </div>
             <p className="text-sm sm:text-base text-[#FFB74D] font-medium max-w-lg mx-auto">
-              Your registration is confirmed. Please present this digital ticket code or QR upon arrival at the Nakuru Baobab Sanctuary.
+              Your ceremonial registration is confirmed. Please present this digital pass or QR code upon arrival at the Bahai Faith Centre, Nakuru.
             </p>
           </div>
 
@@ -170,7 +177,7 @@ export const RegistrationTab: React.FC<RegistrationTabProps> = ({ event, onRegis
                 <Sparkles className="w-7 h-7 text-[#FFB74D]" />
                 <div>
                   <span className="text-xs uppercase tracking-widest font-extrabold text-[#FFD8B5]">
-                    Official SUT Africa Pass
+                    Official SUT Africa Pass • 100% Free RSVP
                   </span>
                   <h3 className="font-serif text-xl sm:text-2xl font-extrabold text-white">{event.title}</h3>
                 </div>
@@ -189,7 +196,7 @@ export const RegistrationTab: React.FC<RegistrationTabProps> = ({ event, onRegis
                   </div>
                   <div>
                     <span className="text-xs font-bold text-[#D4A373] uppercase tracking-wider block">Pass Tier</span>
-                    <span className="font-extrabold text-[#FF8A00] text-base sm:text-lg">{completedTicket.passType.split(" ")[0]}</span>
+                    <span className="font-extrabold text-[#FF8A00] text-base sm:text-lg">{completedTicket.passType.split(" (")[0]} (Free RSVP)</span>
                   </div>
                 </div>
 
@@ -222,11 +229,14 @@ export const RegistrationTab: React.FC<RegistrationTabProps> = ({ event, onRegis
                 <span className="text-[11px] font-mono font-bold text-[#1A120B] mt-2.5 block tracking-wide">
                   SCAN AT GATE • {completedTicket.ticketCode}
                 </span>
+                <span className="text-[10px] font-bold text-[#2E7D32] uppercase mt-1">
+                  100% Free RSVP Entry
+                </span>
               </div>
             </div>
 
             <div className="bg-[#18120D] px-8 py-5 border-t-2 border-[#5C3A21] flex flex-col sm:flex-row items-center justify-between text-xs font-semibold text-[#D4A373] gap-4">
-              <span>{event.dates} • Nakuru Foothills, Kenya</span>
+              <span>{event.dates} • Bahai Faith Centre, Nakuru</span>
               <button
                 onClick={() => window.print()}
                 className="px-5 py-2.5 rounded-xl bg-[#2C1D11] hover:bg-[#3E2315] text-[#FFB74D] font-extrabold flex items-center gap-2 transition-all border border-[#D4A373]/40 shadow-sm hover:scale-105"
@@ -235,6 +245,37 @@ export const RegistrationTab: React.FC<RegistrationTabProps> = ({ event, onRegis
                 <span>Print or Save Pass PDF</span>
               </button>
             </div>
+          </div>
+
+          {/* Optional Elder Travel Support Section */}
+          <div className="max-w-3xl mx-auto rounded-2xl bg-[#2C1D11]/80 border-2 border-[#D4A373]/60 p-6 sm:p-8 space-y-4 relative z-10">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+              <div className="flex items-center gap-3">
+                <HeartHandshake className="w-6 h-6 text-[#FFB74D] shrink-0" />
+                <div>
+                  <h4 className="font-serif font-bold text-lg text-white">
+                    Help a Rural Elder Travel to the Council Fire
+                  </h4>
+                  <p className="text-xs text-[#FAF6F0]/80">
+                    Your attendance is free. If you are able, support transit for village elders via explicit M-Pesa & Bank wire.
+                  </p>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={() => setShowElderDonationDetails(!showElderDonationDetails)}
+                className="px-4 py-2 rounded-xl bg-gradient-to-r from-[#E65100] to-[#BF360C] text-white text-xs font-bold shrink-0 flex items-center gap-1.5 hover:scale-105 transition-all"
+              >
+                <span>{showElderDonationDetails ? "Hide Contribution Details" : "View M-Pesa & Bank Details"}</span>
+                {showElderDonationDetails ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+              </button>
+            </div>
+
+            {showElderDonationDetails && (
+              <div className="pt-4 border-t border-[#5C3A21] animate-fadeIn">
+                <ElderSponsorshipDetails compact />
+              </div>
+            )}
           </div>
 
           <div className="text-center pt-4 relative z-10 flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -256,6 +297,17 @@ export const RegistrationTab: React.FC<RegistrationTabProps> = ({ event, onRegis
       ) : (
         /* REGISTRATION FORM STEPS */
         <div className="bg-[#FAF6F0] rounded-3xl p-6 sm:p-14 border-2 border-[#D4A373] shadow-2xl space-y-10">
+          
+          {/* Ubuntu Free RSVP Banner */}
+          <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-[#2C1D11] to-[#1A120B] text-white border border-[#D4A373]/60 flex items-center gap-4 shadow-md">
+            <div className="w-10 h-10 rounded-xl bg-[#2E7D32] flex items-center justify-center shrink-0 text-white font-bold text-lg shadow">
+              ✓
+            </div>
+            <div className="text-xs sm:text-sm leading-relaxed">
+              <strong className="text-[#FFB74D] block font-serif text-sm sm:text-base">Ubuntu Sacred Gathering: 100% Free RSVP</strong>
+              No entrance fee, camping charge, or ticket fee is required. All passes are completely free of charge to honor sacred African hospitality.
+            </div>
+          </div>
           
           {/* Progress Tabs */}
           <div className="flex items-center justify-between max-w-xl mx-auto border-b-2 border-[#D4A373]/40 pb-5">
@@ -337,6 +389,37 @@ export const RegistrationTab: React.FC<RegistrationTabProps> = ({ event, onRegis
                       </div>
                     );
                   })}
+                </div>
+
+                {/* Optional Elder Travel Support Section inside Step 1 */}
+                <div className="rounded-2xl bg-[#FFF8E7] border-2 border-[#D4A373]/60 p-5 sm:p-6 space-y-3">
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                    <div className="flex items-center gap-3">
+                      <HeartHandshake className="w-5 h-5 text-[#E65100] shrink-0" />
+                      <div>
+                        <h4 className="font-serif font-bold text-sm sm:text-base text-[#1A120B]">
+                          Moved to Sponsor an Elder's Journey? (Optional)
+                        </h4>
+                        <p className="text-xs text-[#5C4033] font-light">
+                          All gathering passes are 100% Free RSVP. You can optionally sponsor regional travel for village elders via explicit M-Pesa or Bank wire.
+                        </p>
+                      </div>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => setShowElderDonationDetails(!showElderDonationDetails)}
+                      className="px-4 py-2 rounded-xl bg-[#1A120B] text-[#FFB74D] hover:text-white text-xs font-bold shrink-0 flex items-center gap-1.5 transition-colors"
+                    >
+                      <span>{showElderDonationDetails ? "Hide Contribution Details" : "View M-Pesa & Bank Details"}</span>
+                      {showElderDonationDetails ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+                    </button>
+                  </div>
+
+                  {showElderDonationDetails && (
+                    <div className="pt-4 border-t border-[#D4A373]/40 animate-fadeIn">
+                      <ElderSponsorshipDetails compact />
+                    </div>
+                  )}
                 </div>
 
                 <div className="pt-4 flex justify-end">

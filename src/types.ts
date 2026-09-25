@@ -92,7 +92,12 @@ export interface TicketRegistration {
   phone: string;
   country: string;
   tribalAffiliation: string;
-  passType: "General Gathering (Free)" | "Camping Pass ($35 / Equiv)" | "Meal Ticket Bundle ($50 / Equiv)" | "VIP Elder Supporter ($150 / Equiv)";
+  passType: 
+    | "General Gathering (100% Free RSVP)" 
+    | "Sanctuary Camping Pass (100% Free RSVP)" 
+    | "Communal Meals Pass (100% Free RSVP)" 
+    | "Youth & Family Circle Pass (100% Free RSVP)"
+    | string;
   workshopInterests: string[];
   dialectNeeds: string;
   emergencyContact: string;

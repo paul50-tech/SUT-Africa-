@@ -57,7 +57,7 @@ export const PortalTab: React.FC<PortalTabProps> = ({
 
   // Organizer Admin State
   const [isAdminUnlocked, setIsAdminUnlocked] = useState(false);
-  const [pinInput, setPinInput] = useState("UBUNTU2026");
+  const [pinInput, setPinInput] = useState("");
   const [pinError, setPinError] = useState(false);
   const [organizerTable, setOrganizerTable] = useState<"attendees" | "volunteers" | "proposals" | "donations">("attendees");
   const [adminSearch, setAdminSearch] = useState("");
@@ -139,7 +139,7 @@ export const PortalTab: React.FC<PortalTabProps> = ({
   };
 
   // Metrics
-  const totalFundsRaised = 12500;
+  const totalFundsRaised = donations.reduce((sum, d) => sum + (d.amount || 0), 0);
   const totalCampingPitches = registrations.filter(r => r.passType.includes("Camping")).length;
 
   return (
@@ -153,7 +153,7 @@ export const PortalTab: React.FC<PortalTabProps> = ({
         <div className="relative z-10 max-w-4xl space-y-6">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#3E2315] border border-[#D4A373]/60 text-[#FFB74D] text-xs font-extrabold uppercase tracking-widest shadow-lg">
             <Sparkles className="w-4 h-4 text-[#FFB74D] animate-pulse" />
-            <span>Step 1: Production Data Persistence & Live Portal</span>
+            <span>Assembly Secretary & Pass Portal</span>
           </div>
 
           <h1 className="font-serif text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
@@ -503,8 +503,9 @@ export const PortalTab: React.FC<PortalTabProps> = ({
                 </button>
               </form>
 
-              <div className="p-3 rounded-xl bg-[#EFEBE6] border border-[#D4A373]/60 text-xs text-[#5C4033]">
-                💡 <strong className="text-[#1A120B]">Demo Note:</strong> The default testing PIN is prefilled as <code className="font-mono font-bold text-[#E65100]">UBUNTU2026</code>. Click unlock to proceed!
+              <div className="p-3 rounded-xl bg-[#EFEBE6] border border-[#D4A373]/60 text-xs text-[#5C4033] flex items-center justify-between">
+                <span>Council authorization required for attendee and financial manifests.</span>
+                <span className="font-mono text-[11px] text-[#8C5319] font-bold">Authorized Personnel</span>
               </div>
             </div>
           ) : (
@@ -579,13 +580,13 @@ export const PortalTab: React.FC<PortalTabProps> = ({
 
               </div>
 
-              {/* Gate Check-In Simulator Box */}
+              {/* Gate Check-In & Verifier Box */}
               <div className="bg-[#FAF6F0] p-6 sm:p-8 rounded-3xl border-2 border-[#D4A373] shadow-xl space-y-4">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                   <div className="flex items-center gap-2">
                     <UserCheck className="w-6 h-6 text-[#E65100]" />
                     <h3 className="font-serif text-xl font-bold text-[#1A120B]">
-                      Gate Check-In & Ticket Verifier Simulator
+                      Gate Check-In & Ticket Verifier
                     </h3>
                   </div>
                   <span className="text-xs font-bold bg-[#E65100]/10 text-[#E65100] px-3 py-1 rounded-full border border-[#E65100]/30">
@@ -593,7 +594,7 @@ export const PortalTab: React.FC<PortalTabProps> = ({
                   </span>
                 </div>
                 <p className="text-xs sm:text-sm text-[#5C4033] font-light">
-                  Test gate entry protocols by entering or pasting an attendee ticket code (e.g. <code className="font-mono font-bold">{registrations[0]?.ticketCode || "SUT-AFR-2026-0001"}</code>) to simulate check-in scanning.
+                  Verify gate entry status by entering or scanning an attendee ticket code.
                 </p>
 
                 <form onSubmit={handleSimulateCheckIn} className="flex flex-col sm:flex-row gap-3">

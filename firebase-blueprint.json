@@ -1,0 +1,78 @@
+{
+  "collections": [
+    {
+      "name": "registrations",
+      "fields": [
+        { "name": "fullName", "type": "string" },
+        { "name": "email", "type": "string" },
+        { "name": "phone", "type": "string" },
+        { "name": "country", "type": "string" },
+        { "name": "tribalAffiliation", "type": "string" },
+        { "name": "emergencyContact", "type": "string" },
+        { "name": "ticketType", "type": "string" },
+        { "name": "workshopInterests", "type": "array" },
+        { "name": "dialectNeeds", "type": "string" },
+        { "name": "dietaryRestrictions", "type": "string" },
+        { "name": "campingNeeds", "type": "boolean" },
+        { "name": "accessibilityNeeds", "type": "string" },
+        { "name": "timestamp", "type": "timestamp" }
+      ],
+      "rules": {
+        "read": "true",
+        "create": "true",
+        "update": "false",
+        "delete": "false"
+      }
+    },
+    {
+      "name": "proposals",
+      "fields": [
+        { "name": "title", "type": "string" },
+        { "name": "description", "type": "string" },
+        { "name": "category", "type": "string" },
+        { "name": "author", "type": "string" },
+        { "name": "status", "type": "string" },
+        { "name": "timestamp", "type": "timestamp" }
+      ],
+      "rules": {
+        "read": "true",
+        "create": "true",
+        "update": "false",
+        "delete": "false"
+      }
+    },
+    {
+      "name": "volunteers",
+      "fields": [
+        { "name": "name", "type": "string" },
+        { "name": "email", "type": "string" },
+        { "name": "role", "type": "string" },
+        { "name": "experience", "type": "string" },
+        { "name": "availability", "type": "string" },
+        { "name": "timestamp", "type": "timestamp" }
+      ],
+      "rules": {
+        "read": "true",
+        "create": "true",
+        "update": "false",
+        "delete": "false"
+      }
+    },
+    {
+      "name": "donations",
+      "fields": [
+        { "name": "donorName", "type": "string" },
+        { "name": "amount", "type": "number" },
+        { "name": "message", "type": "string" },
+        { "name": "currency", "type": "string" },
+        { "name": "timestamp", "type": "timestamp" }
+      ],
+      "rules": {
+        "read": "true",
+        "create": "true",
+        "update": "false",
+        "delete": "false"
+      }
+    }
+  ]
+}

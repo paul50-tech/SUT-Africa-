@@ -38,12 +38,7 @@ export const GatheringTab: React.FC<GatheringTabProps> = ({
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
 
-  const [ribbons, setRibbons] = useState<{ id: string; color: string; author: string; text: string; direction: string }[]>([
-    { id: "rib-1", color: "yellow", author: "Mama Wangari (Kenya)", text: "May the sunrise of illumination guide Africa's children to peace.", direction: "East • Illumination" },
-    { id: "rib-2", color: "red", author: "Brother Amadou (Senegal)", text: "For our youth entering their rites of passage with strength and pride.", direction: "South • Vitality" },
-    { id: "rib-3", color: "blue", author: "Sister Thandiwe (South Africa)", text: "May our rivers heal and our hearts forgive across all tribal borders.", direction: "West • Cleansing" },
-    { id: "rib-4", color: "white", author: "Elder Osei (Ghana)", text: "We honor the unwritten libraries of our grandfathers and grandmothers.", direction: "North • Ancestors" },
-  ]);
+  const [ribbons, setRibbons] = useState<{ id: string; color: string; author: string; text: string; direction: string }[]>([]);
   const [newRibbonAuthor, setNewRibbonAuthor] = useState("");
   const [newRibbonText, setNewRibbonText] = useState("");
   const [newRibbonColor, setNewRibbonColor] = useState("yellow");
@@ -138,7 +133,7 @@ export const GatheringTab: React.FC<GatheringTabProps> = ({
       {/* 1. HERO BANNER: THE GATHERING OVERVIEW */}
       <section className="relative rounded-3xl overflow-hidden bg-[#1A120B] text-white shadow-2xl border-2 border-[#5C3A21]">
         <div className="absolute inset-0">
-          <img
+          <img loading="lazy"
             src={event.heroImage}
             alt={event.title}
             className="w-full h-full object-cover opacity-35"
@@ -330,27 +325,33 @@ export const GatheringTab: React.FC<GatheringTabProps> = ({
               <span className="text-xs font-extrabold uppercase tracking-widest text-[#8C5319] block px-1">
                 Live Prayer Ribbons on the Baobab Branches ({ribbons.length})
               </span>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {ribbons.map((rib) => {
-                  const colorStyles: Record<string, string> = {
-                    yellow: "border-l-4 border-l-[#FF8A00] bg-[#FFF8E7] text-[#5C4033]",
-                    red: "border-l-4 border-l-[#BF360C] bg-[#FFF3E0] text-[#5C4033]",
-                    blue: "border-l-4 border-l-[#1E3A8A] bg-[#EFF6FF] text-[#1E3A8A]",
-                    white: "border-l-4 border-l-[#8C5319] bg-white text-[#1A120B]"
-                  };
-                  return (
-                    <div key={rib.id} className={`p-4 rounded-xl border border-[#D4A373]/40 shadow-sm space-y-1.5 transition-all hover:shadow-md ${colorStyles[rib.color] || colorStyles.yellow}`}>
-                      <div className="flex justify-between items-center text-[10px] font-extrabold uppercase tracking-wider opacity-80">
-                        <span>{rib.author}</span>
-                        <span className="bg-black/10 px-2 py-0.5 rounded">{rib.direction.split("•")[0]}</span>
+              {ribbons.length === 0 ? (
+                <div className="p-6 bg-[#FAF6F0] rounded-xl border border-dashed border-[#D4A373] text-center text-xs text-[#5C4033] font-medium">
+                  No prayer ribbons tied yet. Tie the first ceremonial prayer ribbon above to bless the Baobab tree.
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {ribbons.map((rib) => {
+                    const colorStyles: Record<string, string> = {
+                      yellow: "border-l-4 border-l-[#FF8A00] bg-[#FFF8E7] text-[#5C4033]",
+                      red: "border-l-4 border-l-[#BF360C] bg-[#FFF3E0] text-[#5C4033]",
+                      blue: "border-l-4 border-l-[#1E3A8A] bg-[#EFF6FF] text-[#1E3A8A]",
+                      white: "border-l-4 border-l-[#8C5319] bg-white text-[#1A120B]"
+                    };
+                    return (
+                      <div key={rib.id} className={`p-4 rounded-xl border border-[#D4A373]/40 shadow-sm space-y-1.5 transition-all hover:shadow-md ${colorStyles[rib.color] || colorStyles.yellow}`}>
+                        <div className="flex justify-between items-center text-[10px] font-extrabold uppercase tracking-wider opacity-80">
+                          <span>{rib.author}</span>
+                          <span className="bg-black/10 px-2 py-0.5 rounded">{rib.direction.split("•")[0]}</span>
+                        </div>
+                        <p className="text-xs font-serif italic leading-relaxed">
+                          "{rib.text}"
+                        </p>
                       </div>
-                      <p className="text-xs font-serif italic leading-relaxed">
-                        "{rib.text}"
-                      </p>
-                    </div>
-                  );
-                })}
-              </div>
+                    );
+                  })}
+                </div>
+              )}
             </div>
 
           </div>
@@ -368,7 +369,7 @@ export const GatheringTab: React.FC<GatheringTabProps> = ({
             Schedule of Sacred Activities
           </h2>
           <p className="text-sm sm:text-base text-[#5C4033] font-medium leading-relaxed">
-            While Native North American SUT gatherings honor sunrise pipes and sweat lodges, our African convergence celebrates libations under the baobab tree, polyrhythmic drum healing, and Indigenous land wisdom.
+            Our African convergence celebrates libations under the baobab tree, polyrhythmic drum healing, and Indigenous land wisdom.
           </p>
         </div>
 
@@ -443,9 +444,9 @@ export const GatheringTab: React.FC<GatheringTabProps> = ({
         </div>
       </section>
 
-      {/* 3. CALL FOR WORKSHOPS & COMMUNITY PROPOSALS BOARD */}
-      <section className="bg-[#FAF6F0] rounded-3xl p-8 sm:p-12 border-2 border-[#D4A373] shadow-2xl space-y-8">
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pb-6 border-b-2 border-[#D4A373]/40">
+      {/* 3. CALL FOR WORKSHOPS & COMMUNITY PROPOSALS */}
+      <section className="bg-[#FAF6F0] rounded-3xl p-8 sm:p-12 border-2 border-[#D4A373] shadow-2xl">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div>
             <span className="text-xs font-extrabold uppercase tracking-widest text-[#E65100]">
               Community Participation
@@ -464,56 +465,6 @@ export const GatheringTab: React.FC<GatheringTabProps> = ({
             <PlusCircle className="w-5 h-5 text-[#FFB74D]" />
             <span>Submit Workshop Proposal</span>
           </button>
-        </div>
-
-        {/* Existing Community Proposals Grid */}
-        <div className="space-y-4">
-          <h3 className="font-serif text-lg font-extrabold text-[#1A120B] flex items-center gap-2">
-            <span>Approved & Submitted Community Offerings ({proposals.length})</span>
-          </h3>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {proposals.map((prop) => (
-              <div
-                key={prop.id}
-                className="bg-white rounded-2xl p-6 border-2 border-[#D4A373]/60 shadow-sm hover:shadow-xl hover:border-[#E65100]/60 transition-all duration-300 flex flex-col justify-between"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="px-3 py-1 rounded-lg bg-[#FFF8E7] text-[#8C5319] border border-[#D4A373]/40 text-[10px] font-extrabold uppercase tracking-wider">
-                      {prop.category}
-                    </span>
-                    <span className={`px-2.5 py-0.5 rounded-md text-[10px] font-extrabold uppercase tracking-wider shadow-sm ${
-                      prop.status === "Featured"
-                        ? "bg-[#E65100] text-white border border-[#FFB74D]/40"
-                        : "bg-[#E8F5E9] text-[#2E7D32] border border-[#A5D6A7]"
-                    }`}>
-                      {prop.status}
-                    </span>
-                  </div>
-
-                  <h4 className="font-serif font-extrabold text-[#1A120B] text-lg mb-2 line-clamp-2 tracking-tight">
-                    {prop.title}
-                  </h4>
-
-                  <p className="text-xs text-[#5C4033] mb-3 flex items-center gap-1.5 font-semibold">
-                    <User className="w-3.5 h-3.5 text-[#E65100] shrink-0" />
-                    <span className="font-bold text-[#1A120B]">{prop.submitterName}</span>
-                    <span className="font-light">({prop.tribeOrAffiliation})</span>
-                  </p>
-
-                  <p className="text-xs text-[#5C4033] leading-relaxed line-clamp-3 mb-4 font-light">
-                    {prop.description}
-                  </p>
-                </div>
-
-                <div className="pt-3 border-t border-[#D4A373]/30 flex items-center justify-between text-[11px] font-bold text-[#8C5319]">
-                  <span>Format: {prop.format}</span>
-                  <span>Duration: {prop.duration}</span>
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 

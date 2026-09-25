@@ -3,16 +3,8 @@ import { LoreArticle, Proverb } from "../types";
 import { 
   BookOpen, 
   Sparkles, 
-  TreePine, 
-  Globe2, 
-  Download, 
-  FileText, 
   Quote, 
   RefreshCw, 
-  MessageSquare, 
-  Send, 
-  Bot, 
-  User, 
   ChevronRight,
   Sun,
   Flame,
@@ -24,31 +16,11 @@ interface LoreTabProps {
   proverbs: Proverb[];
 }
 
-interface AIChatMessage {
-  id: string;
-  sender: "user" | "baobab";
-  text: string;
-  timestamp: string;
-}
-
 export const LoreTab: React.FC<LoreTabProps> = ({ articles, proverbs }) => {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [activeArticle, setActiveArticle] = useState<LoreArticle | null>(null);
   const [proverbIndex, setProverbIndex] = useState<number>(0);
   const [proverbTheme, setProverbTheme] = useState<string>("all");
-
-  // Gemini AI Chat State
-  const [chatMessages, setChatMessages] = useState<AIChatMessage[]>([
-    {
-      id: "init-1",
-      sender: "baobab",
-      text: "Sawubona! I am The Baobab Wisdom Guide, an interactive voice of Indigenous African proverbs, Ubuntu philosophy, and sacred ecology. Ask me a question about our ancestral traditions, rivers, mountains, or community harmony.",
-      timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-    }
-  ]);
-  const [inputQuestion, setInputQuestion] = useState("");
-  const [isConsulting, setIsConsulting] = useState(false);
-  const [selectedTopicStyle, setSelectedTopicStyle] = useState("Ubuntu & Ecological Harmony");
 
   const [activeStickElder, setActiveStickElder] = useState(0);
   const talkingStickCouncil = [
@@ -94,53 +66,30 @@ export const LoreTab: React.FC<LoreTabProps> = ({ articles, proverbs }) => {
     ? articles
     : articles.filter(a => a.category === selectedCategory);
 
-  const handleAskBaobab = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!inputQuestion.trim() || isConsulting) return;
-
-    const userMsgText = inputQuestion;
-    const newMsg: AIChatMessage = {
-      id: `usr-${Date.now()}`,
-      sender: "user",
-      text: userMsgText,
-      timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-    };
-
-    setChatMessages(prev => [...prev, newMsg]);
-    setInputQuestion("");
-    setIsConsulting(true);
-
-    try {
-      const response = await fetch("/api/wisdom", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          query: userMsgText,
-          topic: selectedTopicStyle
-        })
-      });
-
-      const data = await response.json();
-      const botMsg: AIChatMessage = {
-        id: `bot-${Date.now()}`,
-        sender: "baobab",
-        text: data.reply || "May the roots of our ancestors ground your spirit in truth.",
-        timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-      };
-
-      setChatMessages(prev => [...prev, botMsg]);
-    } catch (err) {
-      setChatMessages(prev => [
-        ...prev,
-        {
-          id: `bot-${Date.now()}`,
-          sender: "baobab",
-          text: `[Ancestral Memory Note]: "When spider webs unite, they can tie up a lion." Even in offline mode, remember that Ubuntu binds all living things. Please check network connectivity or API secrets to resume live synthesis.`,
-          timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-        }
-      ]);
-    } finally {
-      setIsConsulting(false);
+  const handleChairClick = (idx: number) => {
+    setActiveStickElder(idx);
+    
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(talkingStickCouncil[idx].message);
+      
+      // Try to find an African English voice (e.g., South Africa, Nigeria, Kenya)
+      const voices = window.speechSynthesis.getVoices();
+      const africanVoice = voices.find(v => 
+        v.lang.toLowerCase().includes('za') || 
+        v.lang.toLowerCase().includes('ng') || 
+        v.lang.toLowerCase().includes('ke')
+      );
+      
+      if (africanVoice) {
+        utterance.voice = africanVoice;
+      }
+      
+      // Lower pitch and rate to simulate an older, hoarser voice
+      utterance.rate = 0.75;
+      utterance.pitch = 0.5;
+      
+      window.speechSynthesis.speak(utterance);
     }
   };
 
@@ -168,7 +117,7 @@ export const LoreTab: React.FC<LoreTabProps> = ({ articles, proverbs }) => {
           </h1>
 
           <p className="text-base sm:text-lg text-[#FAF6F0]/90 leading-relaxed font-light">
-            Where the US SUT site features the Legend of Turtle Island, SUT Africa preserves our own digital library of cosmology, proverbs, and ecological lore. Discover the spiritual significance of Mount Kenya, the Nile River, and the sacred Baobab tree.
+            SUT Africa preserves our own digital library of cosmology, proverbs, and ecological lore. Discover the spiritual significance of the indigenous peoples, mountains, rivers, fire and the sacred trees.
           </p>
         </div>
 
@@ -266,7 +215,7 @@ export const LoreTab: React.FC<LoreTabProps> = ({ articles, proverbs }) => {
               return (
                 <button
                   key={idx}
-                  onClick={() => setActiveStickElder(idx)}
+                  onClick={() => handleChairClick(idx)}
                   className={`w-full p-4 rounded-2xl border-2 text-left transition-all flex items-center justify-between ${
                     isSelected
                       ? "bg-gradient-to-r from-[#E65100] to-[#BF360C] text-white border-[#FFB74D] shadow-xl scale-[1.02] font-extrabold"
@@ -302,9 +251,18 @@ export const LoreTab: React.FC<LoreTabProps> = ({ articles, proverbs }) => {
                   </h3>
                 </div>
               </div>
-              <span className="px-3 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-widest bg-[#E65100]/20 text-[#FFB74D] border border-[#E65100]/50">
-                Live Council Voice
-              </span>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => handleChairClick(activeStickElder)}
+                  className="p-2 rounded-full bg-[#E65100]/20 hover:bg-[#E65100]/40 text-[#FFB74D] border border-[#E65100]/50 transition-colors shadow-md group"
+                  title="Hear Proclamation"
+                >
+                  <Volume2 className="w-4 h-4 group-hover:scale-110 transition-transform" />
+                </button>
+                <span className="px-3 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-widest bg-[#E65100]/20 text-[#FFB74D] border border-[#E65100]/50">
+                  Live Council Voice
+                </span>
+              </div>
             </div>
 
             <p className="text-base sm:text-xl text-[#FAF6F0] font-serif italic leading-relaxed bg-[#2C1D11]/60 p-6 rounded-2xl border border-[#5C3A21] shadow-inner">
@@ -320,144 +278,7 @@ export const LoreTab: React.FC<LoreTabProps> = ({ articles, proverbs }) => {
         </div>
       </section>
 
-      {/* 2. THE BAOBAB WISDOM GUIDE (GEMINI AI INTERACTIVE ADVISOR) */}
-      <section className="bg-[#1A120B] rounded-3xl p-6 sm:p-12 border-2 border-[#5C3A21] shadow-2xl text-white relative overflow-hidden">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start relative z-10">
-          
-          {/* Left Column: Explanatory Card */}
-          <div className="space-y-5">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#5C2C16] border border-[#D4A373]/50 text-[#FFB74D] text-xs font-extrabold uppercase tracking-wider shadow-sm">
-              <Bot className="w-4 h-4 text-[#FFB74D]" />
-              <span>AI Studio Powered</span>
-            </div>
-
-            <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight">
-              Consult The Baobab Wisdom Guide
-            </h2>
-
-            <p className="text-sm text-[#FAF6F0]/90 leading-relaxed font-light">
-              Our interactive AI advisor is trained on African proverbs, Ubuntu cosmology, and Indigenous ecological stewardship. Ask for advice on community harmony, natural conservation, or tribal philosophies.
-            </p>
-
-            <div className="space-y-2.5 pt-2">
-              <span className="text-xs font-bold text-[#FFB74D] uppercase tracking-wider block">
-                Sample Questions to Try:
-              </span>
-              <button
-                onClick={() => setInputQuestion("What is the spiritual significance of the Baobab tree in West Africa?")}
-                className="w-full text-left p-3 rounded-xl bg-[#2C1D11]/80 hover:bg-[#3E2315] border border-[#D4A373]/40 text-xs text-[#FAF6F0] transition-all flex items-center justify-between group shadow-sm"
-              >
-                <span className="font-medium">"Significance of the Baobab tree?"</span>
-                <ChevronRight className="w-4 h-4 text-[#E65100] group-hover:translate-x-1 transition-transform" />
-              </button>
-              <button
-                onClick={() => setInputQuestion("How can young Africans apply Ubuntu to stop deforestation?")}
-                className="w-full text-left p-3 rounded-xl bg-[#2C1D11]/80 hover:bg-[#3E2315] border border-[#D4A373]/40 text-xs text-[#FAF6F0] transition-all flex items-center justify-between group shadow-sm"
-              >
-                <span className="font-medium">"Applying Ubuntu to stop deforestation?"</span>
-                <ChevronRight className="w-4 h-4 text-[#E65100] group-hover:translate-x-1 transition-transform" />
-              </button>
-              <button
-                onClick={() => setInputQuestion("Tell me a Maasai proverb about rain and livestock.")}
-                className="w-full text-left p-3 rounded-xl bg-[#2C1D11]/80 hover:bg-[#3E2315] border border-[#D4A373]/40 text-xs text-[#FAF6F0] transition-all flex items-center justify-between group shadow-sm"
-              >
-                <span className="font-medium">"Maasai proverb about rain & cattle?"</span>
-                <ChevronRight className="w-4 h-4 text-[#E65100] group-hover:translate-x-1 transition-transform" />
-              </button>
-            </div>
-          </div>
-
-          {/* Right 2 Columns: Chat Window */}
-          <div className="lg:col-span-2 bg-[#18120D] rounded-2xl border-2 border-[#5C3A21] flex flex-col h-[500px] overflow-hidden shadow-2xl">
-            
-            {/* Chat Header */}
-            <div className="bg-[#2C1D11] px-5 py-3.5 border-b-2 border-[#5C3A21] flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#FFB74D] to-[#E65100] flex items-center justify-center p-0.5 shadow-md">
-                  <div className="w-full h-full rounded-full bg-[#1A120B] flex items-center justify-center">
-                    <TreePine className="w-4 h-4 text-[#FFB74D]" />
-                  </div>
-                </div>
-                <div>
-                  <h3 className="font-serif font-extrabold text-sm text-white">The Baobab Guide</h3>
-                  <p className="text-[10px] text-[#A5D6A7] font-bold flex items-center gap-1.5">
-                    <span className="w-2 h-2 rounded-full bg-[#4CAF50] animate-pulse" />
-                    <span>Active Digital Archive</span>
-                  </p>
-                </div>
-              </div>
-
-              <select
-                value={selectedTopicStyle}
-                onChange={(e) => setSelectedTopicStyle(e.target.value)}
-                className="bg-[#18120D] border border-[#D4A373]/60 text-[11px] font-bold text-[#FFB74D] px-3 py-1.5 rounded-lg focus:outline-none"
-              >
-                <option value="Ubuntu & Ecological Harmony">Ubuntu & Ecology</option>
-                <option value="Griot Oral Storytelling">Griot Storytelling</option>
-                <option value="Traditional Elder Peacemaking">Elder Peacemaking</option>
-              </select>
-            </div>
-
-            {/* Chat Messages */}
-            <div className="flex-1 overflow-y-auto p-5 space-y-4">
-              {chatMessages.map((msg) => (
-                <div
-                  key={msg.id}
-                  className={`flex items-start gap-3.5 ${msg.sender === "user" ? "flex-row-reverse" : ""}`}
-                >
-                  <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 text-xs font-bold shadow-md ${
-                    msg.sender === "user"
-                      ? "bg-[#E65100] text-white"
-                      : "bg-[#3E2315] text-[#FFB74D] border border-[#D4A373]/60"
-                  }`}>
-                    {msg.sender === "user" ? <User className="w-4 h-4" /> : <TreePine className="w-4 h-4 text-[#FFB74D]" />}
-                  </div>
-
-                  <div className={`max-w-[80%] rounded-2xl px-4 py-3.5 text-xs sm:text-sm shadow-md ${
-                    msg.sender === "user"
-                      ? "bg-gradient-to-r from-[#E65100] to-[#D84315] text-white rounded-tr-none font-medium"
-                      : "bg-[#2C1D11] text-[#FAF6F0] border border-[#5C3A21] rounded-tl-none leading-relaxed whitespace-pre-wrap font-light"
-                  }`}>
-                    {msg.text}
-                    <div className={`text-[10px] mt-2 font-semibold ${msg.sender === "user" ? "text-[#FFD8B5]" : "text-[#D4A373]"}`}>
-                      {msg.timestamp}
-                    </div>
-                  </div>
-                </div>
-              ))}
-              {isConsulting && (
-                <div className="flex items-center gap-2 text-xs text-[#FFB74D] font-bold italic animate-pulse px-3">
-                  <Sparkles className="w-4 h-4" />
-                  <span>The Baobab Guide is synthesizing ancestral proverbs...</span>
-                </div>
-              )}
-            </div>
-
-            {/* Chat Input */}
-            <form onSubmit={handleAskBaobab} className="p-3.5 bg-[#2C1D11] border-t-2 border-[#5C3A21] flex items-center gap-2.5">
-              <input
-                type="text"
-                value={inputQuestion}
-                onChange={(e) => setInputQuestion(e.target.value)}
-                placeholder="Ask about proverbs, sacred rivers, Ubuntu, or tribal harmony..."
-                className="flex-1 px-4 py-2.5 rounded-xl bg-[#18120D] border border-[#D4A373]/60 text-xs sm:text-sm text-white placeholder-[#D4A373]/60 focus:outline-none focus:ring-2 focus:ring-[#E65100] font-medium"
-              />
-              <button
-                type="submit"
-                disabled={isConsulting || !inputQuestion.trim()}
-                className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#E65100] via-[#D84315] to-[#BF360C] hover:from-[#FF6D00] hover:to-[#D84315] disabled:opacity-50 text-white font-extrabold text-xs shadow-lg transition-all flex items-center gap-2 border border-[#FFB74D]/30"
-              >
-                <span>Ask</span>
-                <Send className="w-3.5 h-3.5 text-[#FFB74D]" />
-              </button>
-            </form>
-
-          </div>
-
-        </div>
-      </section>
-
-      {/* 3. AFRICAN COSMOLOGY & LORE ARTICLES */}
+      {/* 2. AFRICAN COSMOLOGY & LORE ARTICLES */}
       <section className="space-y-10">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 border-b-2 border-[#D4A373]/40 pb-6">
           <div>
@@ -504,7 +325,7 @@ export const LoreTab: React.FC<LoreTabProps> = ({ articles, proverbs }) => {
             >
               <div>
                 <div className="relative h-64 overflow-hidden">
-                  <img
+                  <img loading="lazy" decoding="async"
                     src={article.image}
                     alt={article.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -543,7 +364,7 @@ export const LoreTab: React.FC<LoreTabProps> = ({ articles, proverbs }) => {
                   <span>{article.readTime}</span>
                 </span>
                 <span className="text-[#E65100] group-hover:underline flex items-center gap-1 font-extrabold">
-                  <span>Read Sacred Scroll</span>
+                  <span>Read Story</span>
                   <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </span>
               </div>
@@ -552,58 +373,14 @@ export const LoreTab: React.FC<LoreTabProps> = ({ articles, proverbs }) => {
         </div>
       </section>
 
-      {/* 4. DIGITAL CONSERVATION LIBRARY (DOWNLOADS) */}
-      <section className="bg-[#FAF6F0] rounded-3xl p-8 sm:p-14 border-2 border-[#D4A373] shadow-2xl space-y-8">
-        <div>
-          <span className="text-xs font-extrabold uppercase tracking-widest text-[#E65100]">
-            Resource Download Center
-          </span>
-          <h2 className="font-serif text-2xl sm:text-3xl font-extrabold text-[#1A120B] mt-1 tracking-tight">
-            Digital Library: Sacred Ecology & Conservation Flyers
-          </h2>
-          <p className="text-sm text-[#5C4033] max-w-2xl mt-1 font-medium">
-            Downloadable PDFs, trifolds, and flyers designed for mobile-first sharing and community educational workshops across villages and schools.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {articles.map((art, idx) => (
-            <div
-              key={idx}
-              className="bg-white p-6 rounded-2xl border-2 border-[#D4A373]/60 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between hover:border-[#E65100]/60"
-            >
-              <div>
-                <div className="w-12 h-12 rounded-2xl bg-[#FFF8E7] text-[#E65100] border border-[#D4A373]/40 flex items-center justify-center mb-4 shadow-sm">
-                  <FileText className="w-6 h-6" />
-                </div>
-                <h4 className="font-serif font-extrabold text-[#1A120B] text-base mb-1.5 tracking-tight">
-                  {art.pdfTitle || `${art.title.split(":")[0]} Guide`}
-                </h4>
-                <p className="text-xs text-[#5C4033] mb-5 font-light leading-relaxed">
-                  Official SUT Africa trifold covering sacred ecology and traditional protection taboos.
-                </p>
-              </div>
-
-              <button
-                onClick={() => alert(`Downloading: ${art.pdfTitle || art.title}... (Simulated PDF download for AI Studio mobile preview)`)}
-                className="w-full py-3 rounded-xl bg-[#1A120B] hover:bg-[#E65100] text-[#FFB74D] hover:text-white text-xs font-extrabold transition-all flex items-center justify-center gap-2 shadow-md hover:scale-[1.02]"
-              >
-                <Download className="w-4 h-4" />
-                <span>{art.pdfSize || "2.1 MB PDF"}</span>
-              </button>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* 5. ARTICLE READER MODAL */}
+      {/* 3. ARTICLE READER MODAL */}
       {activeArticle && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-fadeIn">
           <div className="bg-[#FAF6F0] rounded-3xl max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border-2 border-[#D4A373] relative">
             
             {/* Modal Image Header */}
             <div className="relative h-80">
-              <img
+              <img loading="lazy"
                 src={activeArticle.image}
                 alt={activeArticle.title}
                 className="w-full h-full object-cover"
@@ -637,16 +414,15 @@ export const LoreTab: React.FC<LoreTabProps> = ({ articles, proverbs }) => {
                 ))}
               </div>
 
-              <div className="pt-8 border-t-2 border-[#D4A373]/30 flex flex-col sm:flex-row items-center justify-between gap-5">
-                <div className="text-xs font-bold text-[#8C5319]">
-                  <span>Part of the SUT Africa Ancestral Library • Rooted in Ubuntu</span>
-                </div>
+              <div className="pt-6 border-t-2 border-[#D4A373]/30 flex items-center justify-between">
+                <span className="text-xs font-bold text-[#8C5319]">
+                  Part of the SUT Africa Ancestral Library • Rooted in Ubuntu
+                </span>
                 <button
-                  onClick={() => alert(`Downloading: ${activeArticle.pdfTitle || activeArticle.title}...`)}
-                  className="px-6 py-3.5 rounded-2xl bg-gradient-to-r from-[#E65100] via-[#D84315] to-[#BF360C] hover:from-[#FF6D00] hover:to-[#D84315] text-white text-sm font-extrabold shadow-xl flex items-center gap-2.5 transition-all hover:scale-105 border border-[#FFB74D]/30"
+                  onClick={() => setActiveArticle(null)}
+                  className="px-6 py-2.5 rounded-xl bg-[#1A120B] text-[#FAF6F0] hover:bg-[#3E2315] text-xs font-bold transition-all"
                 >
-                  <Download className="w-4 h-4 text-[#FFB74D]" />
-                  <span>Download Trifold PDF</span>
+                  Close Story
                 </button>
               </div>
             </div>

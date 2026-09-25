@@ -9,7 +9,7 @@ export const INITIAL_ELDERS: Elder[] = [
     country: "Senegal",
     region: "West Africa",
     bio: "For over five decades, Mzee Ousmane has carried the kora and the oral memory of the Mali and Jolof empires. He travels across West Africa mediating communal peace through ancestral genealogy and musical storytelling.",
-    photo: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=80",
+    photo: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&q=75",
     wisdomQuote: "A tree without roots cannot withstand the storm; a people without their stories are strangers in their own land.",
     targetAmount: 850,
     raisedAmount: 620,
@@ -24,7 +24,7 @@ export const INITIAL_ELDERS: Elder[] = [
     country: "Kenya / Tanzania",
     region: "East Africa",
     bio: "As a revered Laibon of the Loita Plains, Ole Lekuton bridges traditional cattle-herding wisdom with modern wildlife conservation. He leads sunrise libations asking Enkai (God) for harmony between people and wildlife.",
-    photo: "https://images.unsplash.com/photo-1531384441138-2736e62e0919?auto=format&fit=crop&w=800&q=80",
+    photo: "https://images.unsplash.com/photo-1531384441138-2736e62e0919?auto=format&fit=crop&w=400&q=75",
     wisdomQuote: "We do not inherit the earth from our ancestors; we borrow it from our children and the beasts of the savanna.",
     targetAmount: 450,
     raisedAmount: 450,
@@ -39,7 +39,7 @@ export const INITIAL_ELDERS: Elder[] = [
     country: "South Africa",
     region: "Southern Africa",
     bio: "Initiated in the sacred Drakensberg mountains, Gogo Mandisa specializes in using indigenous fynbos and roots for emotional and spiritual trauma healing. She has mentored over 200 young traditional healers.",
-    photo: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80",
+    photo: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=75",
     wisdomQuote: "Umuntu ngumuntu ngabantu—I am because you are. When one leaf is healed, the whole branch rejoices.",
     targetAmount: 900,
     raisedAmount: 340,
@@ -54,7 +54,7 @@ export const INITIAL_ELDERS: Elder[] = [
     country: "Ghana",
     region: "West Africa",
     bio: "Guardian of the sacred groves along the Gulf of Guinea, Baba Nii champions the restoration of taboo forests and coastal lagoons as living spiritual entities that protect coastal communities from erosion.",
-    photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80",
+    photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=75",
     wisdomQuote: "When the river is calm, do not forget the spring from which it flowed.",
     targetAmount: 800,
     raisedAmount: 710,
@@ -69,7 +69,7 @@ export const INITIAL_ELDERS: Elder[] = [
     country: "Botswana / Namibia",
     region: "Southern Africa",
     bio: "Representing one of the oldest surviving continuous cultures on Earth, Mama Keren shares the healing power of the San trance dance and ancient desert water-finding wisdom.",
-    photo: "https://images.unsplash.com/photo-1589156280159-27698a70f29e?auto=format&fit=crop&w=800&q=80",
+    photo: "https://images.unsplash.com/photo-1589156280159-27698a70f29e?auto=format&fit=crop&w=400&q=75",
     wisdomQuote: "The stars are our campfires in the sky; when we dance around our fire on earth, we converse with the cosmos.",
     targetAmount: 950,
     raisedAmount: 480,
@@ -84,7 +84,7 @@ export const INITIAL_ELDERS: Elder[] = [
     country: "Ethiopia",
     region: "East Africa",
     bio: "Guardian of the ancient church forests of northern Ethiopia, Abba Tesfaye protects biodiversity islands around sacred sanctuaries where rare birds and medicinal trees thrive in peace.",
-    photo: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80",
+    photo: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=75",
     wisdomQuote: "The forest is the garment of the sacred; strip the trees, and the prayers lose their shelter.",
     targetAmount: 600,
     raisedAmount: 590,
@@ -98,10 +98,10 @@ export const UPCOMING_GATHERING: EventInfo = {
   title: "The Great Rift Valley Convergence",
   subtitle: "Awakening the Ancestral Fire of Ubuntu",
   dates: "September 26, 2026",
-  location: "Sacred Baobab Sanctuary, Nakuru Foothills, Kenya (Hybrid Physical & Global Virtual Access)",
+  location: "Bahai Faith Centre, Nakuru (Hybrid Physical & Global Virtual Access)",
   theme: "Healing the Land, Uniting the Tribes, Empowering the Youth",
   description: "On this sacred day, elders, healers, conservationists, and youth from over 40 African nations and the diaspora will gather beneath the ancient acacias and baobabs of the Great Rift Valley. Here, where humanity first walked upright, we join our voices in sunrise libations, oral storytelling, drum healing, and practical workshops on Indigenous ecology.",
-  heroImage: "https://images.unsplash.com/photo-1516026974298-531bf4251037?auto=format&fit=crop&w=1600&q=80",
+  heroImage: "https://images.unsplash.com/photo-1516026974298-531bf4251037?auto=format&fit=crop&w=1200&q=75",
   schedule: [
     {
       id: "act-1",
@@ -151,50 +151,7 @@ export const UPCOMING_GATHERING: EventInfo = {
   ]
 };
 
-export const INITIAL_PROPOSALS: WorkshopProposal[] = [
-  {
-    id: "prop-1",
-    submitterName: "Dr. Amina Touré",
-    tribeOrAffiliation: "Fulani / African Herbalists Guild",
-    email: "amina@herbalheritage.org",
-    phone: "+221 77 555 0192",
-    title: "Sacred Roots & Leaves: Integrating Traditional African Pharmacopeia with Community Healthcare",
-    category: "Herbal Medicine",
-    description: "A demonstration of 15 essential medicinal plants native to sub-Saharan Africa, teaching sustainable wild-harvesting and preparation of teas and poultices for malaria and inflammation relief.",
-    format: "Interactive Workshop",
-    duration: "2 Hours",
-    dateSubmitted: "2026-07-10",
-    status: "Approved"
-  },
-  {
-    id: "prop-2",
-    submitterName: "Kwame & Kweku Mensah",
-    tribeOrAffiliation: "Ashanti Woodcarvers & Drum Guild",
-    email: "mensahbros@ashanticrafts.gh",
-    phone: "+233 24 555 8812",
-    title: "The Heartbeat of the Wood: Carving and Tuning the Djembe and Talking Drum",
-    category: "Beadwork & Craft",
-    description: "Participants will learn the spiritual etiquette of harvesting wood, stretching goat skins, and the language of drum rhythms used to send messages across villages.",
-    format: "Field Demonstration",
-    duration: "3 Hours",
-    dateSubmitted: "2026-07-15",
-    status: "Featured"
-  },
-  {
-    id: "prop-3",
-    submitterName: "Tendai Mupfumi",
-    tribeOrAffiliation: "Shona / Great Zimbabwe Earth Keepers",
-    email: "tendai@earthkeepers.zw",
-    phone: "+263 77 222 9901",
-    title: "Restoring Sacred Groves: How Traditional Taboos Protect Biodiversity",
-    category: "Spiritual Ecology",
-    description: "Exploring how traditional community laws regarding sacred forests, totems, and protected water springs serve as the world's most effective community conservation model.",
-    format: "Oral Presentation",
-    duration: "1.5 Hours",
-    dateSubmitted: "2026-07-18",
-    status: "Approved"
-  }
-];
+export const INITIAL_PROPOSALS: WorkshopProposal[] = [];
 
 export const LORE_ARTICLES: LoreArticle[] = [
   {
@@ -210,7 +167,7 @@ export const LORE_ARTICLES: LoreArticle[] = [
       "Today, as glaciers recede due to changing climates, SUT Africa elders remind us that protecting the mountain's forests is not just an environmental duty—it is defending the very sanctuary of the Divine."
     ],
     readTime: "4 min read",
-    image: "https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?auto=format&fit=crop&w=1000&q=80",
+    image: "https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?auto=format&fit=crop&w=700&q=75",
     pdfTitle: "Sacred Mountains of Africa - Conservation Manifesto",
     pdfSize: "2.4 MB PDF"
   },
@@ -227,7 +184,7 @@ export const LORE_ARTICLES: LoreArticle[] = [
       "In West African Griot culture, poets and musicians were traditionally buried in the hollow trunks of dry baobabs so their stories would become part of the wood, whispering to anyone who leaned their ear against the bark."
     ],
     readTime: "5 min read",
-    image: "https://images.unsplash.com/photo-1516026974298-531bf4251037?auto=format&fit=crop&w=1000&q=80",
+    image: "https://images.unsplash.com/photo-1516026974298-531bf4251037?auto=format&fit=crop&w=700&q=75",
     pdfTitle: "Baobab & Acacia: Indigenous Tree Lore Trifold",
     pdfSize: "1.8 MB PDF"
   },
@@ -244,7 +201,7 @@ export const LORE_ARTICLES: LoreArticle[] = [
       "SUT Africa views the Nile Basin as a supreme symbol of our interdependence: a drop of rain falling on the highlands of Rwanda or Ethiopia eventually quenches the thirst of travelers thousands of miles north in Cairo. What happens upstream blesses or burdens those downstream."
     ],
     readTime: "6 min read",
-    image: "https://images.unsplash.com/photo-1503177119275-0aa32b3a9368?auto=format&fit=crop&w=1000&q=80",
+    image: "https://images.unsplash.com/photo-1503177119275-0aa32b3a9368?auto=format&fit=crop&w=700&q=75",
     pdfTitle: "Water is Life: African River Stewardship Guide",
     pdfSize: "3.1 MB PDF"
   },
@@ -261,7 +218,7 @@ export const LORE_ARTICLES: LoreArticle[] = [
       "SUT Africa applies Ubuntu to ecological conservation: the trees, rivers, elephants, and bees are also our 'relatives' in the great circle of life. When we destroy a forest, we diminish our own humanity."
     ],
     readTime: "5 min read",
-    image: "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=1000&q=80",
+    image: "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=700&q=75",
     pdfTitle: "The Philosophy of Ubuntu - Educational Charter",
     pdfSize: "1.5 MB PDF"
   }

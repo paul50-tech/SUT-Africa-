@@ -15,6 +15,7 @@ import {
   DollarSign
 } from "lucide-react";
 import confetti from "canvas-confetti";
+import { ElderSponsorshipDetails } from "./ElderSponsorshipDetails";
 
 interface EldersTabProps {
   onOpenGlobalSponsorModal: () => void;
@@ -23,12 +24,8 @@ interface EldersTabProps {
 export const EldersTab: React.FC<EldersTabProps> = ({
   onOpenGlobalSponsorModal
 }) => {
-  const totalTarget = 45000;
-  const totalRaised = 12500;
-  const globalPercent = Math.min(100, Math.round((totalRaised / totalTarget) * 100));
-
   return (
-    <div className="space-y-16 pb-16">
+    <div className="space-y-16 pb-16 w-full max-w-[1400px] mx-auto">
       
       {/* 1. HEADER & WHY SPONSORSHIP MATTERS IN AFRICA */}
       <section className="bg-[#1A120B] text-white rounded-3xl p-8 sm:p-14 border-2 border-[#5C3A21] shadow-2xl space-y-8 relative overflow-hidden">
@@ -60,29 +57,12 @@ export const EldersTab: React.FC<EldersTabProps> = ({
         {/* Global Progress Dashboard */}
         <div className="bg-[#2C1D11]/60 rounded-2xl p-6 sm:p-8 border-2 border-[#D4A373]/60 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl relative z-10">
           <div className="space-y-1.5 text-center md:text-left">
-            <span className="text-xs font-extrabold uppercase tracking-widest text-[#D4A373]">
+            <h3 className="font-serif text-2xl sm:text-3xl font-extrabold text-white">
               General Elder Travel Fund
-            </span>
-            <div className="flex items-baseline gap-2.5 justify-center md:justify-start">
-              <span className="font-serif text-3xl sm:text-5xl font-extrabold text-white">${totalRaised.toLocaleString()}</span>
-              <span className="text-sm font-semibold text-[#FFB74D]/80">raised of ${totalTarget.toLocaleString()} continental goal</span>
-            </div>
-            <p className="text-xs text-[#FAF6F0]/70 max-w-md font-light">
+            </h3>
+            <p className="text-sm text-[#FAF6F0]/80 max-w-lg font-light mt-2">
               Supports round-trip flights, 4x4 village transit, lodging, and dietary accommodations for all attending leaders.
             </p>
-          </div>
-
-          <div className="w-full md:w-72 space-y-2.5">
-            <div className="flex justify-between text-xs font-bold text-[#FFB74D]">
-              <span>Overall Progress</span>
-              <span className="font-mono text-sm font-extrabold">{globalPercent}%</span>
-            </div>
-            <div className="w-full bg-[#1A120B] h-3.5 rounded-full overflow-hidden border border-[#D4A373]/40 p-0.5 shadow-inner">
-              <div
-                className="bg-gradient-to-r from-[#D4A373] via-[#FF8A00] to-[#E65100] h-full rounded-full transition-all duration-700 shadow-sm"
-                style={{ width: `${globalPercent}%` }}
-              />
-            </div>
           </div>
 
           <button
@@ -90,9 +70,23 @@ export const EldersTab: React.FC<EldersTabProps> = ({
             className="w-full md:w-auto px-7 py-4 rounded-xl bg-gradient-to-r from-[#E65100] via-[#D84315] to-[#BF360C] hover:from-[#FF6D00] hover:to-[#D84315] text-white font-extrabold text-sm shadow-xl flex items-center justify-center gap-2.5 shrink-0 transition-all hover:scale-105 border border-[#FFB74D]/30"
           >
             <HeartHandshake className="w-5 h-5 text-[#FFB74D]" />
-            <span>Contribute to General Elder Fund</span>
+            <span>Open Fast Sponsorship Modal</span>
           </button>
         </div>
+      </section>
+
+      {/* 2. EXPLICIT PAYMENT & CONTRIBUTION CHANNELS */}
+      <section className="bg-[#FAF6F0] rounded-3xl p-6 sm:p-12 border-2 border-[#D4A373] shadow-xl space-y-6">
+        <div className="text-center max-w-2xl mx-auto space-y-2">
+          <h2 className="font-serif text-2xl sm:text-4xl font-extrabold text-[#1A120B]">
+            Explicit Contribution Channels
+          </h2>
+          <p className="text-xs sm:text-sm text-[#5C4033]">
+            Transfer directly to verified SUT Africa trust accounts via Safaricom M-Pesa Paybill, KCB Bank wire, MTN MoMo, or verified online gateways.
+          </p>
+        </div>
+
+        <ElderSponsorshipDetails />
       </section>
 
     </div>
